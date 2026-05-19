@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" fill="#0A0A0A"/>
+  <polygon points="60,8 112,60 60,112 8,60" stroke="#E60023" stroke-width="2.5" fill="none"/>
+  <text x="60" y="54" font-family="'Bebas Neue', sans-serif" font-size="28" fill="#E60023" text-anchor="middle" dominant-baseline="middle">G</text>
+  <text x="60" y="72" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">GUAU GUAU</text>
+</svg>
