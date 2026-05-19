@@ -7,10 +7,8 @@
   const nextBtn = document.getElementById('nextBtn');
   const counter = document.getElementById('counter');
   const progress = document.getElementById('progress');
-  const skipDemo = document.getElementById('skipDemo');
 
   let current = 0;
-  const DEMO_SLIDE_INDEX = 10; // slide 11 (the preview slide), 0-based = 10
 
   function goTo(index, skipHash) {
     if (index < 0) index = 0;
@@ -40,7 +38,6 @@
   // Click handlers
   prevBtn.addEventListener('click', prev);
   nextBtn.addEventListener('click', next);
-  skipDemo.addEventListener('click', () => goTo(DEMO_SLIDE_INDEX));
 
   // Keyboard
   document.addEventListener('keydown', (e) => {
@@ -89,7 +86,7 @@
 
   // Click on slide background (not buttons / links) = next
   document.addEventListener('click', (e) => {
-    const isNav = e.target.closest('.nav-bar, .skip-demo, a, button');
+    const isNav = e.target.closest('.nav-bar, a, button');
     if (isNav) return;
     next();
   });

@@ -45,12 +45,45 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ── Deck container ───────────────────────────────────── */
-.deck {
+/* ── Frame: 3-row flex layout ─────────────────────────── */
+.frame {
   position: relative;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.top-strip {
+  flex: 0 0 auto;
+  height: clamp(44px, 7vh, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 clamp(12px, 2vw, 24px);
+  z-index: 30;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0));
+}
+
+.bottom-strip {
+  flex: 0 0 auto;
+  height: clamp(56px, 8vh, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(12px, 2vw, 24px);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 30;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.92), rgba(10, 10, 10, 0));
+}
+
+/* ── Deck container (middle row) ──────────────────────── */
+.deck {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -74,11 +107,11 @@ body::after {
 .slide.is-active { opacity: 1; transform: translateX(0); pointer-events: auto; z-index: 2; }
 .slide.is-prev  { transform: translateX(-40px); }
 
-/* Inner wrapper that holds slide content with proper padding */
+/* Inner wrapper with normal content padding (strips handle the chrome) */
 .slide-inner {
   width: 100%;
   max-width: 1100px;
-  padding: clamp(72px, 8vh, 96px) clamp(20px, 6vw, 80px) clamp(96px, 12vh, 132px);
+  padding: clamp(20px, 4vh, 48px) clamp(20px, 6vw, 80px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -203,7 +236,7 @@ body::after {
 
 .cover-hint {
   position: absolute;
-  bottom: calc(var(--nav-h) + 6px);
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   font-size: clamp(10px, 1.1vw, 13px);
@@ -211,7 +244,8 @@ body::after {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   animation: hint-fade 2.4s ease-in-out infinite;
-  z-index: 40;
+  z-index: 4;
+  pointer-events: none;
 }
 
 @keyframes hint-fade { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.75; } }
@@ -590,20 +624,15 @@ body::after {
 
 .urgency strong { color: var(--neon); font-weight: 700; }
 
-/* ── Nav bar + progress ───────────────────────────────── */
+/* ── Nav bar (lives inside bottom-strip, not fixed) ──── */
 .nav-bar {
-  position: fixed;
-  bottom: max(14px, env(safe-area-inset-bottom));
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 14px;
-  z-index: 50;
-  background: rgba(10, 10, 10, 0.78);
-  border: 1px solid rgba(201, 162, 78, 0.2);
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(201, 162, 78, 0.22);
   border-radius: 999px;
-  padding: 8px 16px;
+  padding: 6px 14px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -636,7 +665,7 @@ body::after {
 }
 
 .progress {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   height: 2px;
@@ -647,26 +676,21 @@ body::after {
   width: 0;
 }
 
-/* ── Skip-to-demo ─────────────────────────────────────── */
+/* ── Skip-to-demo (lives inside top-strip) ────────────── */
 .skip-demo {
-  position: fixed;
-  top: max(14px, env(safe-area-inset-top));
-  right: 14px;
-  z-index: 50;
-  background: rgba(10, 10, 10, 0.78);
+  background: rgba(10, 10, 10, 0.85);
   border: 1px solid var(--gold-dim);
   color: var(--gold);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
-  padding: 8px 14px;
+  padding: 7px 13px;
   border-radius: 999px;
   cursor: pointer;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   transition: color 200ms ease, border-color 200ms ease;
-  min-height: 36px;
 }
 
 .skip-demo:hover { color: var(--neon); border-color: var(--neon); }
@@ -684,7 +708,7 @@ body::after {
   .close-grid { grid-template-columns: 1fr; gap: 8px; }
 
   .slide-inner {
-    padding: 60px 18px 80px;
+    padding: 16px 18px;
     min-height: 100%;
     justify-content: flex-start;
   }
@@ -702,10 +726,10 @@ body::after {
 
   .source { margin-top: 14px; }
 
-  .skip-demo { font-size: 10px; padding: 6px 10px; right: 8px; top: 8px; }
+  .skip-demo { font-size: 10px; padding: 6px 10px; }
 
-  .nav-bar { gap: 10px; padding: 6px 12px; }
-  .nav-arrow { padding: 6px 8px; font-size: 18px; min-width: 36px; min-height: 36px; }
+  .nav-bar { gap: 10px; padding: 5px 12px; }
+  .nav-arrow { padding: 5px 8px; font-size: 18px; min-width: 36px; min-height: 36px; }
   .nav-counter { min-width: 48px; font-size: 11px; }
 
   .cover-hint { display: none; }
@@ -723,7 +747,7 @@ body::after {
 
 /* Very small phones */
 @media (max-width: 380px) {
-  .slide-inner { padding: 60px 14px 84px; }
+  .slide-inner { padding: 14px; }
   .big-number { font-size: clamp(70px, 16vh, 130px); }
   .roi-line { font-size: 13px; }
   .roi-result { font-size: clamp(26px, 7vw, 42px); }
@@ -732,16 +756,17 @@ body::after {
 
 /* Landscape phone */
 @media (max-height: 500px) and (orientation: landscape) {
-  .slide-inner { padding: 48px 24px 64px; }
+  .top-strip { height: 36px; }
+  .bottom-strip { height: 44px; }
+  .slide-inner { padding: 12px 24px; }
   .big-number { font-size: clamp(60px, 32vh, 140px); flex-direction: row; gap: 0.1em; }
   .big-number .unit { font-size: 0.42em; align-self: flex-end; padding-bottom: 0.15em; }
-  .nav-bar { bottom: 8px; padding: 4px 10px; }
-  .skip-demo { top: 8px; right: 8px; }
+  .nav-bar { padding: 3px 10px; }
 }
 
 /* Tablet */
 @media (min-width: 720px) and (max-width: 1100px) {
-  .slide-inner { padding: 88px 32px 112px; }
+  .slide-inner { padding: 32px 32px; }
 }
 
 /* Hover-only enhancements (skip on touch) */

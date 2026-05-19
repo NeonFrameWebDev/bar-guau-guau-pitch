@@ -16,11 +16,10 @@
 </head>
 <body>
 
-  <div class="progress" id="progress"></div>
+  <div class="frame">
+    <div class="progress" id="progress"></div>
 
-  <button class="skip-demo" id="skipDemo" aria-label="Skip to live preview">Skip to demo &raquo;</button>
-
-  <main class="deck" id="deck" aria-roledescription="presentation">
+    <main class="deck" id="deck" aria-roledescription="presentation">
 
     <!-- Slide 1: Cover -->
     <section class="slide slide-cover is-active" data-slide="1" aria-label="Cover">
@@ -122,52 +121,8 @@
       </div>
     </section>
 
-    <!-- Slide 10: What we built you -->
-    <section class="slide" data-slide="10" aria-label="What we built you">
-      <div class="slide-inner">
-        <p class="eyebrow">What we built for you</p>
-        <h2 class="features-title">Already live. <span class="neon">No deposit yet.</span></h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">EN&middot;ES</div>
-            <div class="feature-title">Two languages</div>
-            <div class="feature-desc">Arizona reads it in English. Your locals read it in Spanish. One site. Both crowds.</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">18+</div>
-            <div class="feature-title">Classy door</div>
-            <div class="feature-desc">Age gate keeps it professional. Anyone who clicks a WhatsApp link sees the velvet rope, not the dance floor.</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">PHONE</div>
-            <div class="feature-title">Built for thumbs</div>
-            <div class="feature-desc">Where every &ldquo;near me&rdquo; search happens. Where every spring breaker decides where the night goes.</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">REAL</div>
-            <div class="feature-title">Your bar. Your neon.</div>
-            <div class="feature-desc">No stock. No AI. The site shows the actual venue your customer is about to walk into.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 11: Live preview -->
-    <section class="slide" data-slide="11" aria-label="Live preview URL">
-      <div class="slide-inner">
-        <p class="eyebrow">See it for yourself</p>
-        <div class="preview-wrap">
-          <div class="qr-box">
-            <img src="assets/qr_preview.png" alt="QR code for live site" />
-          </div>
-          <p class="preview-instruction">Scan with your phone camera</p>
-          <p class="preview-url">neonframewebdev.github.io/<wbr/>bar-guau-guau</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 12: ROI math -->
-    <section class="slide" data-slide="12" aria-label="Return on investment">
+    <!-- Slide 10: ROI math -->
+    <section class="slide" data-slide="10" aria-label="Return on investment">
       <div class="slide-inner">
         <p class="eyebrow">The math</p>
         <h2 class="features-title roi-title">One new bottle service table a month <span class="neon">and the site pays itself back forever.</span></h2>
@@ -182,8 +137,8 @@
       </div>
     </section>
 
-    <!-- Slide 13: Pricing -->
-    <section class="slide" data-slide="13" aria-label="Pricing">
+    <!-- Slide 11: Pricing -->
+    <section class="slide" data-slide="11" aria-label="Pricing">
       <div class="slide-inner">
         <h2 class="pricing-title">Pricing</h2>
         <div class="pricing-grid">
@@ -217,53 +172,16 @@
       </div>
     </section>
 
-    <!-- Slide 14: The close -->
-    <section class="slide" data-slide="14" aria-label="How to commit">
-      <div class="slide-inner">
-        <h2 class="close-title">Ready when <span class="neon">you are.</span></h2>
-        <div class="close-grid">
-          <div class="close-card">
-            <span class="icon">1</span>
-            <div class="title">Pay now</div>
-            <div class="body">Stripe link. Card or transfer. Site live on your domain in 24 hours.</div>
-          </div>
-          <div class="close-card">
-            <span class="icon">2</span>
-            <div class="title">Pay cash</div>
-            <div class="body">Hand it to Chad. Same prices. Same 24-hour go-live. Cleanest move.</div>
-          </div>
-          <div class="close-card">
-            <span class="icon">3</span>
-            <div class="title">Think about it</div>
-            <div class="body">Preview stays live 30 days. WhatsApp Chad anytime. After 30 days, the URL goes dark.</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </main>
 
-    <!-- Slide 15: Contact -->
-    <section class="slide" data-slide="15" aria-label="Contact">
-      <div class="slide-inner">
-        <svg class="contact-diamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <polygon points="60,8 112,60 60,112 8,60" stroke="#E60023" stroke-width="2" fill="none"/>
-          <text x="60" y="58" font-family="'Bebas Neue', sans-serif" font-size="32" fill="#E60023" text-anchor="middle" dominant-baseline="middle">G</text>
-          <text x="60" y="78" font-family="'Bebas Neue', sans-serif" font-size="11" fill="#E60023" text-anchor="middle" dominant-baseline="middle" letter-spacing="2">GUAU GUAU</text>
-        </svg>
-        <h2 class="contact-name">Talk to Chad.</h2>
-        <p class="contact-row">WhatsApp him direct. Scan the QR. Walk back in.</p>
-        <div class="urgency">
-          Preview is live for <strong>30 days</strong>. After that, the URL goes dark and we&rsquo;re building someone else&rsquo;s bar.
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <nav class="nav-bar" aria-label="Deck navigation">
-    <button class="nav-arrow" id="prevBtn" aria-label="Previous slide">&laquo;</button>
-    <span class="nav-counter" id="counter">1 / 15</span>
-    <button class="nav-arrow" id="nextBtn" aria-label="Next slide">&raquo;</button>
-  </nav>
+    <footer class="bottom-strip">
+      <nav class="nav-bar" aria-label="Deck navigation">
+        <button class="nav-arrow" id="prevBtn" aria-label="Previous slide">&laquo;</button>
+        <span class="nav-counter" id="counter">1 / 11</span>
+        <button class="nav-arrow" id="nextBtn" aria-label="Next slide">&raquo;</button>
+      </nav>
+    </footer>
+  </div>
 
   <script src="js/deck.js"></script>
 </body>
